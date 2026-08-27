@@ -152,14 +152,14 @@ export default function LeadCaptureModal({ isOpen: propIsOpen, onClose: propOnCl
   return (
     <AnimatePresence>
       {isOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+        <div className="lead-modal-overlay">
           {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="absolute inset-0 bg-white/80 backdrop-blur-sm"
+            className="lead-modal-backdrop"
           />
 
           {/* Modal Content */}
@@ -168,25 +168,25 @@ export default function LeadCaptureModal({ isOpen: propIsOpen, onClose: propOnCl
             animate={{ scale: 1, y: 0, opacity: 1 }}
             exit={{ scale: 0.95, y: 15, opacity: 0 }}
             transition={{ type: "spring", duration: 0.4 }}
-            className="relative w-full max-w-md overflow-hidden rounded-[24px] bg-white p-8 shadow-2xl border border-border"
+            className="lead-modal-card"
           >
             {/* Close Button */}
             <button
               onClick={onClose}
-              className="absolute right-6 top-6 text-[#55534E]/70 hover:text-ink text-xl font-bold cursor-pointer transition-colors"
+              className="lead-modal-close"
               aria-label="Close modal"
             >
               ×
             </button>
 
-            <div className="mb-6 mt-4">
+            <div>
               {/* Black callout banner */}
-              <div className="bg-black text-white text-center py-4 px-6 rounded-xl font-medium text-sm leading-relaxed mb-6">
+              <div className="lead-modal-banner">
                 This is how legacies start. This is where it changes. With one name, one decision.
               </div>
               
               {/* Cursive subtitle */}
-              <div className="text-center">
+              <div className="text-center" style={{ marginBottom: "24px" }}>
                 <p
                   style={{
                     fontFamily: "var(--font-caveat), 'Caveat', cursive",
@@ -201,31 +201,31 @@ export default function LeadCaptureModal({ isOpen: propIsOpen, onClose: propOnCl
               </div>
             </div>
 
-            <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
-              <div>
-                <label className="block text-[11px] font-bold text-[#55534E] uppercase tracking-wider mb-2">
+            <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="lead-modal-form-group">
+                <label className="lead-modal-label">
                   First Name
                 </label>
                 <input
                   type="text"
                   placeholder="Your first name"
                   {...register("name")}
-                  className="w-full px-4 py-3.5 rounded-xl border border-berry bg-white text-ink text-sm focus:outline-none focus:ring-1 focus:ring-berry transition-shadow"
+                  className="lead-modal-input border-berry"
                 />
                 {errors.name && (
                   <p className="text-red-600 text-xs mt-1 font-medium">{errors.name.message}</p>
                 )}
               </div>
 
-              <div>
-                <label className="block text-[11px] font-bold text-[#55534E] uppercase tracking-wider mb-2">
+              <div className="lead-modal-form-group">
+                <label className="lead-modal-label">
                   Email
                 </label>
                 <input
                   type="email"
                   placeholder="you@email.com"
                   {...register("email")}
-                  className="w-full px-4 py-3.5 rounded-xl border border-border bg-white text-ink text-sm focus:outline-none focus:border-berry focus:ring-1 focus:ring-berry transition-shadow"
+                  className="lead-modal-input"
                 />
                 {errors.email && (
                   <p className="text-red-600 text-xs mt-1 font-medium">{errors.email.message}</p>
@@ -235,11 +235,11 @@ export default function LeadCaptureModal({ isOpen: propIsOpen, onClose: propOnCl
               <button
                 type="submit"
                 disabled={isSubmitting || isRedirecting}
-                className="w-full py-4 mt-2 rounded-xl bg-[#00bf63] hover:bg-[#00a354] text-white font-bold text-base tracking-wide cursor-pointer transition-colors shadow-lg shadow-[#00bf63]/10 flex items-center justify-center gap-2"
+                className="lead-modal-submit-btn"
               >
                 {isRedirecting ? (
                   <>
-                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" style={{ width: "20px", height: "20px" }}>
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
                     </svg>

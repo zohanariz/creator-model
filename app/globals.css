@@ -1805,7 +1805,129 @@ details p {
   font-size: 14.5px;
   color: #D9C0D2 !important;
 }
+/* Lead Capture Modal Custom Premium Styles */
+.lead-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
 
+.lead-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(8px);
+}
 
+.lead-modal-card {
+  position: relative;
+  width: 100%;
+  max-width: 448px;
+  background-color: #ffffff;
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  z-index: 10;
+}
 
+.lead-modal-close {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+  color: var(--body);
+  opacity: 0.7;
+  font-size: 28px;
+  font-weight: bold;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transition: color 0.2s;
+  z-index: 20;
+  line-height: 1;
+}
 
+.lead-modal-close:hover {
+  color: var(--ink);
+}
+
+.lead-modal-banner {
+  background-color: #000000;
+  color: #ffffff;
+  text-align: center;
+  padding: 16px 24px;
+  border-radius: 12px;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  margin-top: 16px;
+}
+
+.lead-modal-form-group {
+  margin-bottom: 20px;
+}
+
+.lead-modal-label {
+  display: block;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--body);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+
+.lead-modal-input {
+  width: 100%;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  background-color: #ffffff;
+  color: var(--ink);
+  font-size: 14px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.lead-modal-input:focus {
+  outline: none;
+  border-color: var(--berry);
+  box-shadow: 0 0 0 1px var(--berry);
+}
+
+.lead-modal-input.border-berry {
+  border-color: var(--berry);
+}
+
+.lead-modal-submit-btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 12px;
+  background-color: #00bf63;
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 16px;
+  letter-spacing: 0.02em;
+  cursor: pointer;
+  border: none;
+  transition: background-color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 10px 15px -3px rgba(0, 191, 99, 0.15);
+}
+
+.lead-modal-submit-btn:hover:not(:disabled) {
+  background-color: #00a354;
+}
+
+.lead-modal-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
