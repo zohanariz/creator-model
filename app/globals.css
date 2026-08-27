@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+@source "../components/**/*.{js,ts,jsx,tsx}";
+@source "../app/**/*.{js,ts,jsx,tsx}";
+
+@theme {
+  --color-ink: #1A1A1A;
+  --color-body: #55534E;
+  --color-navy: #4A2340;
+  --color-navy-hover: #351930;
+  --color-berry: #9B2F52;
+  --color-berry-tint: #F9EEF2;
+  --color-border: #E9E7E2;
+}
+
 :root {
   --ink: #1A1A1A;
   --body: #55534E;
