@@ -41,5 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 # Large Video Files (exceeding GitHub's 100MB limit)
-public/videos/vsl.mp4
+# public/videos/vsl.mp4 (commented out so tracking works for the compressed version)
 public/videos/vsl.mov
+public/videos/*_original.mp4
+public/videos/*_backup.mp4
