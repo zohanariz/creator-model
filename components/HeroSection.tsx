@@ -138,6 +138,15 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
             onContextMenu={(e) => e.preventDefault()}
           />
 
+          {/* Big Play Button Overlay */}
+          {!isPlaying && (
+            <div className="vsl-big-play-btn">
+              <svg className="vsl-big-play-icon" viewBox="0 0 24 24">
+                <path d="M8 5v14l11-7z" />
+              </svg>
+            </div>
+          )}
+
           {/* Muted / Autoplay Unmute Overlay Box */}
           {isPlaying && isMuted && (
             <div 
