@@ -42,10 +42,9 @@ export default function CTASection({ onOpenModal }: CTASectionProps) {
           <Image
             src="/images/image_14.jpeg"
             alt="Raise Them Ready overview"
-            width={480}
-            height={320}
+            width={1024}
+            height={682}
             className="w-full h-auto block rounded-xl mb-4"
-            style={{ objectFit: "cover" }}
           />
           <h3>When you join Raise Them Ready, you get:</h3>
           <div className="final-list">

@@ -490,10 +490,9 @@ p {
   transform: translate(-50%, -50%);
   width: 90%;
   max-width: 320px;
-  background: rgba(18, 48, 56, 0.75);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: transparent;
+  border: none;
+  box-shadow: none;
   border-radius: 24px;
   padding: 28px 24px;
   display: flex;
@@ -504,7 +503,6 @@ p {
   color: #ffffff;
   cursor: pointer;
   z-index: 10;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5);
   user-select: none;
   animation: vsl-bounce-in 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
@@ -772,8 +770,8 @@ p {
 }
 
 .avatar {
-  width: 100px;
-  height: 130px;
+  width: 150px;
+  height: 195px;
   border-radius: 10px;
   background: var(--berry-tint);
   font-weight: 700;
@@ -785,7 +783,7 @@ p {
 
 .story-grid {
   display: grid;
-  grid-template-columns: 120px 1fr;
+  grid-template-columns: 170px 1fr;
   gap: 36px;
   align-items: start;
 }

@@ -64,15 +64,14 @@ export default function CheckoutPage() {
 
         {/* Navy final-card */}
         <div className="final-card">
-          <div className="relative w-full h-[220px] md:h-[280px] rounded-xl overflow-hidden mb-4">
+          <div className="w-full rounded-xl overflow-hidden mb-4">
             <Image
               src="/images/image_14.jpeg"
               alt="Raise Them Ready overview"
-              fill
+              width={1024}
+              height={682}
               priority
-              style={{ objectFit: "cover" }}
-              sizes="(max-width: 768px) 100vw, 600px"
-              className="rounded-xl"
+              className="w-full h-auto block rounded-xl"
             />
           </div>
           <h3>When you join Raise Them Ready, you get:</h3>

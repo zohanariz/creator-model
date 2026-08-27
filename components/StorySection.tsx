@@ -14,10 +14,10 @@ export default function StorySection({ onOpenModal }: StorySectionProps) {
           <div className="story-avatar-col">
             <Image
               className="avatar"
-              src="/images/image_0.png"
+              src="/images/pink_blazer_avatar.png"
               alt="Nashira"
-              width={100}
-              height={130}
+              width={150}
+              height={195}
               style={{ objectFit: "cover" }}
             />
           </div>
