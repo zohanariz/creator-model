@@ -129,7 +129,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
           <video
             ref={videoRef}
             src="/videos/vsl.mp4"
-            poster="/images/vsl_thumbnail.png"
+            poster="/images/vsl_thumbnail_2.png"
             playsInline
             className="vsl-video"
             preload="metadata"
