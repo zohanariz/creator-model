@@ -91,23 +91,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
     const observer = new IntersectionObserver(
       (entries) => {
         entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            // Play video when at least 30% is visible
-            if (video.paused) {
-              video.play().then(() => {
-                setIsPlaying(true);
-              }).catch(() => {
-                // Autoplay blocked: try playing muted as standard fallback
-                video.muted = true;
-                setIsMuted(true);
-                video.play().then(() => {
-                  setIsPlaying(true);
-                }).catch((err) => {
-                  console.error("Autoplay failed even when muted:", err);
-                });
-              });
-            }
-          } else {
+          if (!entry.isIntersecting) {
             // Pause video when scrolled out of view
             if (!video.paused) {
               video.pause();
@@ -116,7 +100,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
           }
         });
       },
-      { threshold: 0.3 }
+      { threshold: 0.1 }
     );
 
     observer.observe(video);
