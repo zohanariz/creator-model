@@ -261,9 +261,11 @@ p {
   will-change: transform, box-shadow;
 }
 
-.vsl-container:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 25px 50px rgba(74, 35, 64, 0.35), 0 0 0 1px rgba(155, 47, 82, 0.2);
+@media (hover: hover) {
+  .vsl-container:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 25px 50px rgba(74, 35, 64, 0.35), 0 0 0 1px rgba(155, 47, 82, 0.2);
+  }
 }
 
 .vsl-video {
@@ -293,10 +295,24 @@ p {
   z-index: 10;
 }
 
-.vsl-container:hover .vsl-controls,
+@media (hover: hover) {
+  .vsl-container:hover .vsl-controls {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+
 .vsl-controls.vsl-controls-visible {
   opacity: 1;
   pointer-events: auto;
+}
+
+@media (max-width: 767px) {
+  .vsl-container.is-playing .vsl-controls {
+    opacity: 0 !important;
+    pointer-events: none !important;
+    display: none !important;
+  }
 }
 
 .vsl-big-play-btn {
@@ -328,11 +344,13 @@ p {
   margin-left: 4px; /* visually center the play triangle */
 }
 
-.vsl-container:hover .vsl-big-play-btn {
-  transform: translate(-50%, -50%) scale(1.08);
-  background: rgba(0, 0, 0, 0.6);
-  border-color: #ffffff;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+@media (hover: hover) {
+  .vsl-container:hover .vsl-big-play-btn {
+    transform: translate(-50%, -50%) scale(1.08);
+    background: rgba(0, 0, 0, 0.6);
+    border-color: #ffffff;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+  }
 }
 
 .vsl-container:fullscreen {

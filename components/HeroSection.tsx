@@ -212,7 +212,11 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
         </p>
         
         {/* Custom Premium Video Player Container */}
-        <div ref={containerRef} className="vsl-container" onClick={handleContainerClick}>
+        <div 
+          ref={containerRef} 
+          className={`vsl-container ${isPlaying ? "is-playing" : ""} ${hasStarted ? "has-started" : ""}`} 
+          onClick={handleContainerClick}
+        >
           <video
             ref={videoRef}
             src="/videos/vsl.mp4"
