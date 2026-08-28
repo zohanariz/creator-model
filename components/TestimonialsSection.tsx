@@ -217,13 +217,15 @@ export default function TestimonialsSection({ onOpenModal }: TestimonialsSection
               <video
                 ref={videoRef1}
                 src="/videos/testimonial_1.mp4"
+                poster="/images/testimonial_1_thumbnail.jpg"
                 controls
                 playsInline
                 preload="metadata"
                 controlsList="nodownload noplaybackrate nofullscreen"
                 disablePictureInPicture
                 onContextMenu={(e) => e.preventDefault()}
-                className="w-full h-auto block"
+                className="w-full block"
+                style={{ aspectRatio: "9/16", objectFit: "cover" }}
                 onPlay={syncV1State}
                 onPause={syncV1State}
                 onVolumeChange={syncV1State}
@@ -272,13 +274,15 @@ export default function TestimonialsSection({ onOpenModal }: TestimonialsSection
               <video
                 ref={videoRef2}
                 src="/videos/testimonial_2.mp4"
+                poster="/images/testimonial_2_thumbnail.jpg"
                 controls
                 playsInline
                 preload="metadata"
                 controlsList="nodownload noplaybackrate nofullscreen"
                 disablePictureInPicture
                 onContextMenu={(e) => e.preventDefault()}
-                className="w-full h-auto block"
+                className="w-full block"
+                style={{ aspectRatio: "9/16", objectFit: "cover" }}
                 onPlay={syncV2State}
                 onPause={syncV2State}
                 onVolumeChange={syncV2State}

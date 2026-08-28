@@ -9,7 +9,11 @@ interface HeroSectionProps {
 
 export default function HeroSection({ onOpenModal }: HeroSectionProps) {
   const videoRef = React.useRef<HTMLVideoElement>(null);
+  const containerRef = React.useRef<HTMLDivElement>(null);
   const [isPlaying, setIsPlaying] = React.useState(false);
+  const [hasStarted, setHasStarted] = React.useState(false);
+  const [showControls, setShowControls] = React.useState(false);
+  const [isFullscreen, setIsFullscreen] = React.useState(false);
   const [currentTime, setCurrentTime] = React.useState("00:00");
   const [progress, setProgress] = React.useState(0);
   const [isMuted, setIsMuted] = React.useState(false);
@@ -17,14 +21,91 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
   const [activeMenu, setActiveMenu] = React.useState<"main" | "speed" | "quality">("main");
   const [currentSpeed, setCurrentSpeed] = React.useState(1.0);
 
+  const controlsTimeoutRef = React.useRef<NodeJS.Timeout | null>(null);
+
+  const startControlsTimeout = () => {
+    if (controlsTimeoutRef.current) {
+      clearTimeout(controlsTimeoutRef.current);
+    }
+    controlsTimeoutRef.current = setTimeout(() => {
+      setShowControls(false);
+    }, 3500);
+  };
+
+  React.useEffect(() => {
+    if (showControls && isPlaying) {
+      startControlsTimeout();
+    } else {
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    }
+    return () => {
+      if (controlsTimeoutRef.current) {
+        clearTimeout(controlsTimeoutRef.current);
+      }
+    };
+  }, [showControls, isPlaying]);
+
+  const handleContainerClick = (e: React.MouseEvent) => {
+    if (!hasStarted) {
+      togglePlay();
+      return;
+    }
+    if (isPlaying) {
+      setShowControls(!showControls);
+    } else {
+      togglePlay();
+    }
+  };
+
+  React.useEffect(() => {
+    const handleFullscreenChange = () => {
+      setIsFullscreen(!!document.fullscreenElement);
+    };
+    document.addEventListener("fullscreenchange", handleFullscreenChange);
+    document.addEventListener("webkitfullscreenchange", handleFullscreenChange);
+    return () => {
+      document.removeEventListener("fullscreenchange", handleFullscreenChange);
+      document.removeEventListener("webkitfullscreenchange", handleFullscreenChange);
+    };
+  }, []);
+
+  const toggleFullscreen = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    const container = containerRef.current;
+    if (!container) return;
+
+    if (!document.fullscreenElement) {
+      if (container.requestFullscreen) {
+        container.requestFullscreen().catch((err) => console.error(err));
+      } else if ((container as any).webkitRequestFullscreen) {
+        (container as any).webkitRequestFullscreen();
+      } else if ((container as any).msRequestFullscreen) {
+        (container as any).msRequestFullscreen();
+      }
+    } else {
+      if (document.exitFullscreen) {
+        document.exitFullscreen().catch((err) => console.error(err));
+      } else if ((document as any).webkitExitFullscreen) {
+        (document as any).webkitExitFullscreen();
+      } else if ((document as any).msExitFullscreen) {
+        (document as any).msExitFullscreen();
+      }
+    }
+  };
+
   const togglePlay = () => {
     if (!videoRef.current) return;
     if (isPlaying) {
       videoRef.current.pause();
       setIsPlaying(false);
+      setShowControls(false);
     } else {
       videoRef.current.play().catch((err) => console.log(err));
       setIsPlaying(true);
+      setHasStarted(true);
+      setShowControls(false);
     }
   };
 
@@ -63,8 +144,14 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
 
   const syncState = () => {
     if (!videoRef.current) return;
-    setIsPlaying(!videoRef.current.paused);
+    const playing = !videoRef.current.paused;
+    setIsPlaying(playing);
     setIsMuted(videoRef.current.muted);
+    if (playing) {
+      setHasStarted(true);
+    } else {
+      setShowControls(false);
+    }
   };
 
   React.useEffect(() => {
@@ -125,7 +212,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
         </p>
         
         {/* Custom Premium Video Player Container */}
-        <div className="vsl-container" onClick={togglePlay}>
+        <div ref={containerRef} className="vsl-container" onClick={handleContainerClick}>
           <video
             ref={videoRef}
             src="/videos/vsl.mp4"
@@ -172,8 +259,14 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
           
           {/* Custom Overlay Controls */}
           <div 
-            className={`vsl-controls ${!isPlaying ? "vsl-controls-visible" : ""}`}
-            onClick={(e) => e.stopPropagation()}
+            className={`vsl-controls ${showControls ? "vsl-controls-visible" : ""}`}
+            style={!hasStarted ? { display: "none" } : undefined}
+            onClick={(e) => {
+              e.stopPropagation();
+              if (isPlaying) {
+                startControlsTimeout();
+              }
+            }}
           >
             {/* Scrubber / Progress Line */}
             <div className="vsl-progress-container" onClick={handleScrub}>
@@ -336,6 +429,25 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
                   </div>
                 )}
               </div>
+
+              {/* Fullscreen Button */}
+              <button 
+                className="vsl-pill-btn vsl-fullscreen-btn"
+                onClick={toggleFullscreen}
+                style={{ padding: "8px", width: "38px", height: "38px", minWidth: "38px", marginLeft: "8px" }}
+              >
+                {isFullscreen ? (
+                  // Exit Fullscreen Icon
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M5 16h3v3h2v-5H5v2zm3-8H5v2h5V5H8v3zm6 11h2v-3h3v-2h-5v5zm2-11V5h-2v5h5V8h-3z"/>
+                  </svg>
+                ) : (
+                  // Enter Fullscreen Icon
+                  <svg className="w-4 h-4 fill-current" viewBox="0 0 24 24">
+                    <path fill="currentColor" d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/>
+                  </svg>
+                )}
+              </button>
             </div>
           </div>
         </div>
