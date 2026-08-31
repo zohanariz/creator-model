@@ -23,7 +23,25 @@ export default function PainPoints() {
           >
             <path d="M12.4 19.3c-2.6-2.1-8.6-6.5-8.9-10.6-.2-2.7 1.8-4.7 4.2-4.5 1.9.1 3 1.4 3.6 2.7.9-1.2 2.2-2.6 4.1-2.5 2.5.1 4.3 2.4 4 5-.5 4-6.2 7.8-7 9.9z" />
           </svg>
-          {" "}heart just said "
+          {" "}heart{" "}
+          <svg
+            style={{
+              width: "0.95em",
+              height: "0.95em",
+              verticalAlign: "-0.12em",
+              display: "inline-block",
+              marginRight: "-0.08em",
+            }}
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="var(--berry)"
+            strokeWidth="1.6"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M12.4 19.3c-2.6-2.1-8.6-6.5-8.9-10.6-.2-2.7 1.8-4.7 4.2-4.5 1.9.1 3 1.4 3.6 2.7.9-1.2 2.2-2.6 4.1-2.5 2.5.1 4.3 2.4 4 5-.5 4-6.2 7.8-7 9.9z" />
+          </svg>
+          {" "}just said "
           <span className="signature" style={{ fontSize: "1.15em", marginRight: "0.12em" }}>
             yes
           </span>

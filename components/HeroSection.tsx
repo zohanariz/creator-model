@@ -202,7 +202,8 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
     <section className="hero">
       <div className="container">
         <h1>
-          You're Not A Bad Parent.{" "}
+          You're Not A Bad Parent.
+          <br />
           <span className="signature" style={{ fontSize: "40px", lineHeight: "1" }}>
             You're One Person Doing The Job Of A Whole System.
           </span>
@@ -457,7 +458,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
         </div>
         
         <p className="center hero-subtext" style={{ maxWidth: "600px" }}>
-          I built this because I needed it. Step by step, I'll show you how to stop doing everything for your kids and start building a home where they contribute as well.
+          I built this because I needed it. Step-by-step, I'll show you how to stop doing everything for your kids and start building a home where they contribute as well.
         </p>
         <div className="btn-row">
           <CTAButton onClick={onOpenModal} className="btn btn-hero-glow">
@@ -465,7 +466,7 @@ export default function HeroSection({ onOpenModal }: HeroSectionProps) {
           </CTAButton>
         </div>
         <div className="momentum-line center">
-          The cycle breaks with you, or it continues with them.
+          The cycle breaks with you or it continues with them.
         </div>
       </div>
     </section>
